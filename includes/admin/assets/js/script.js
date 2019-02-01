@@ -95,7 +95,7 @@ function mxtdc_upload_new_image( data, form ) {
         data: data,
         contentType: false,
         processData: false,
-        success: function( response ){
+        success: function( response ) {
 
             if( typeof response === 'string' ) {
 
@@ -148,14 +148,6 @@ function mxtdc_success_removing_img( form, default_image ) {
 function mxtdc_add_url( data, form ) {
 
 	jQuery.post( mxtdc_admin_localize.ajaxurl, data, function( response ) {
-
-		console.log( response );
-
-		// if( typeof response === 'string' ) {
-
-		// 	mxtdc_success_removing_img( form, response );
-
-		// }
 
 	} );
 

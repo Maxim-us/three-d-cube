@@ -83,23 +83,18 @@ class MXTDC_Main_Page_Model extends MXTDC_Model
 
 			$movefile = wp_handle_upload( $_file_, $overrides );
 
-			if ( $movefile && empty($movefile['error']) ) {				
+			if ( $movefile && empty($movefile['error']) ) {
 
 				$img_url = $movefile['url'];
-
-				// cut path into format /wp-content/uploads/2018/11/1542189679.png"
-				$matches = array();
-
-				preg_match('/(\wp-content\/.*)/', $img_url, $matches);
-
-				$cut_img_url = $matches[0];
 
 				// update array
 				foreach ( $upload_images_array as $key => $value ) {
 
 					if( $type_of_side == $key ) {
 
-						$upload_images_array[$key]['img'] = $cut_img_url;
+						$esc_img_url = esc_url( $img_url );
+
+						$upload_images_array[$key]['img'] = $esc_img_url;
 
 					}
 					
@@ -120,7 +115,7 @@ class MXTDC_Main_Page_Model extends MXTDC_Model
 
 				);
 
-				echo get_site_url() . '/' . $cut_img_url;
+				echo $esc_img_url;
 
 			} else {
 
@@ -232,7 +227,7 @@ class MXTDC_Main_Page_Model extends MXTDC_Model
 		public static function add_url_to_database( $_post_ )
 		{
 
-			var_dump( $_POST );
+			// var_dump( $_POST );
 
 			global $wpdb;
 
@@ -248,7 +243,9 @@ class MXTDC_Main_Page_Model extends MXTDC_Model
 			// type of side
 			$type_of_side = $_post_['type_of_side'];
 
-			$url = $_post_['url'];
+			$url = esc_url( $_post_['url'] );
+
+			if( $url == NULL ) return;
 
 			// update array
 			foreach ( $upload_images_array as $key => $value ) {

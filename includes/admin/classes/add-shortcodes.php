@@ -90,7 +90,7 @@ class MXTDC_Add_shortcodes
 
 				foreach( $data as $key => $value ) :
 
-					$img_url = $value['img'] == 'NULL' ? MXTDC_PLUGIN_URL . 'assets/img/tdc.jpg' : get_site_url() . '/' . $value['img'];
+					$img_url = $value['img'] == 'NULL' ? MXTDC_PLUGIN_URL . 'assets/img/tdc.jpg' : $value['img'];
 
 					$html .= 'new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( "' . $img_url . '" ), side: THREE.DoubleSide } )';
 

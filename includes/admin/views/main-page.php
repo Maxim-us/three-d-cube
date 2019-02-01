@@ -8,7 +8,7 @@
 
 		<?php
 
-			$img_url = $value['img'] == 'NULL' ? MXTDC_PLUGIN_URL . 'assets/img/tdc.jpg' : get_site_url() . '/' . $value['img'];
+			$img_url = $value['img'] == 'NULL' ? MXTDC_PLUGIN_URL . 'assets/img/tdc.jpg' : $value['img'];
 
 		?>
 
